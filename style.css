@@ -1,2 +1,572 @@
-/* style.css — Portfolio Stylesheet for Aryan Bhatt */
-/* Personal website styling: vintage editorial theme with modern layout */
+/* ==========================================================================
+   style.css — Personal Portfolio of Aryan Bhatt
+   B.Tech CSE, Semester 3, JG University
+   Vintage Editorial Theme with Clean Modern Layout
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Variables / Custom Properties (Theme Colors & Fonts)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Light theme: warm paper background, rich ink text, burnt orange accent */
+  --bg-color: #f7f5f0;
+  --bg-secondary: #eeeae1;
+  --text-color: #1a1918;
+  --text-muted: #6b665f;
+  --accent-color: #b84a28;
+  --accent-hover: #96381b;
+  --border-color: #ded8cb;
+  --card-bg: #fdfbf7;
+  --error-color: #a82020;
+  --success-color: #2b6e3f;
+
+  /* Typography: Serif headings for vintage touch, clean sans for readability */
+  --font-serif: Georgia, "Times New Roman", serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  
+  /* Layout sizing */
+  --max-width: 1040px;
+  --transition-speed: 0.25s;
+}
+
+/* Dark mode theme variables: warm dark charcoal, not pitch black */
+body.dark-mode {
+  --bg-color: #1a1918;
+  --bg-secondary: #242220;
+  --text-color: #ece6dc;
+  --text-muted: #a39c91;
+  --accent-color: #de6c45;
+  --accent-hover: #f0835e;
+  --border-color: #383430;
+  --card-bg: #22201e;
+  --error-color: #f07171;
+  --success-color: #62c47e;
+}
+
+/* --------------------------------------------------------------------------
+   2. Base & Reset Styles (Element Selectors)
+   -------------------------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* Headings use local serif font for an editorial book-like feel */
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: normal;
+  color: var(--text-color);
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color var(--transition-speed) ease;
+}
+
+p {
+  color: var(--text-muted);
+}
+
+ul {
+  list-style: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. Header & Navigation (Class and ID Selectors)
+   -------------------------------------------------------------------------- */
+#main-header {
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-color);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 100;
+  transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+.header-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-brand {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: bold;
+  letter-spacing: -0.02em;
+  color: var(--text-color);
+}
+
+.site-brand:hover {
+  color: var(--accent-color);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.25rem;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  position: relative;
+  padding-bottom: 0.25rem;
+}
+
+.nav-link:hover {
+  color: var(--accent-color);
+}
+
+/* Actions in header: Theme toggle and mobile hamburger */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Dark mode button styling */
+#theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 0.4rem 0.85rem;
+  font-size: 0.8rem;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: border-color var(--transition-speed) ease, color var(--transition-speed) ease, background-color var(--transition-speed) ease;
+}
+
+#theme-toggle:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+/* Mobile hamburger button */
+#menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.menu-bar {
+  width: 22px;
+  height: 2px;
+  background-color: var(--text-color);
+  display: block;
+  transition: transform var(--transition-speed) ease, opacity var(--transition-speed) ease;
+}
+
+/* --------------------------------------------------------------------------
+   4. Section Containers & Dividers
+   -------------------------------------------------------------------------- */
+.section {
+  padding: 5rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.section-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* Numbered section header: e.g. "01 About" */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 2.75rem;
+}
+
+.section-number {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--accent-color);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  color: var(--text-color);
+}
+
+/* --------------------------------------------------------------------------
+   5. Section 01: About & Hero (Asymmetric Layout)
+   -------------------------------------------------------------------------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1.3fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+#hero-name {
+  font-size: 3.5rem;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  max-width: 380px;
+}
+
+.about-bio {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: var(--text-color);
+  padding-top: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   6. Section 02: Skills (Minimal Clean Lines)
+   -------------------------------------------------------------------------- */
+#skills-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem 3rem;
+  max-width: 650px;
+}
+
+.skill-item {
+  font-size: 1.1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: border-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+.skill-bullet {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+/* --------------------------------------------------------------------------
+   7. Section 03: Projects (Clean Row List)
+   -------------------------------------------------------------------------- */
+#projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.project-row {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 2.25rem 2.5rem;
+  transition: border-color var(--transition-speed) ease, background-color var(--transition-speed) ease;
+}
+
+.project-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.project-num {
+  font-size: 0.85rem;
+  color: var(--accent-color);
+  font-weight: 600;
+  font-family: var(--font-sans);
+}
+
+.project-title {
+  font-size: 1.5rem;
+}
+
+.project-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  max-width: 780px;
+  color: var(--text-muted);
+}
+
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+}
+
+.project-tech {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.project-link {
+  font-size: 0.95rem;
+  color: var(--accent-color);
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   8. Section 04: Contact & Form
+   -------------------------------------------------------------------------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 4rem;
+}
+
+.contact-heading {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.contact-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.contact-email-box {
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.25rem;
+}
+
+.contact-email-label {
+  display: block;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+}
+
+#contact-email-link {
+  font-size: 1.15rem;
+  color: var(--accent-color);
+  font-family: var(--font-serif);
+}
+
+#contact-email-link:hover {
+  text-decoration: underline;
+}
+
+/* Contact form inputs */
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.required-mark {
+  color: var(--accent-color);
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  border-radius: 2px;
+  outline: none;
+  transition: border-color var(--transition-speed) ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: var(--accent-color);
+}
+
+.form-textarea {
+  resize: vertical;
+}
+
+/* Inline error messages below input fields */
+.error-msg {
+  font-size: 0.82rem;
+  color: var(--error-color);
+  min-height: 1.1rem;
+}
+
+/* Submit button */
+#submit-btn {
+  align-self: flex-start;
+  padding: 0.85rem 2rem;
+  font-size: 0.95rem;
+  font-family: var(--font-sans);
+  background-color: var(--accent-color);
+  color: #ffffff;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color var(--transition-speed) ease;
+}
+
+#submit-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+.form-status {
+  font-size: 0.95rem;
+  padding-top: 0.5rem;
+}
+
+.form-status.success {
+  color: var(--success-color);
+}
+
+.form-status.error {
+  color: var(--error-color);
+}
+
+/* --------------------------------------------------------------------------
+   9. Footer (Element and ID Selectors)
+   -------------------------------------------------------------------------- */
+#main-footer {
+  border-top: 1px solid var(--border-color);
+  padding: 2.5rem 2rem;
+  background-color: var(--bg-color);
+}
+
+.footer-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.footer-mail {
+  color: var(--accent-color);
+}
+
+.footer-mail:hover {
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   10. Responsive Design (@media query for mobile & tablets)
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 768px) {
+  /* Navigation menu on mobile */
+  #menu-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-color);
+    border-bottom: 1px solid var(--border-color);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem 2rem;
+    gap: 1.25rem;
+    display: none; /* Toggled with JavaScript in next step */
+  }
+
+  .nav-links.nav-open {
+    display: flex;
+  }
+
+  /* Hamburger animated X state */
+  #menu-toggle.menu-active .menu-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  #menu-toggle.menu-active .menu-bar:nth-child(2) {
+    opacity: 0;
+  }
+  #menu-toggle.menu-active .menu-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* About layout single column */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  #hero-name {
+    font-size: 2.5rem;
+  }
+
+  /* Skills single column on mobile */
+  #skills-list {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  /* Projects padding */
+  .project-row {
+    padding: 1.5rem;
+  }
+
+  /* Contact layout single column */
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  /* Footer layout */
+  .footer-container {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+}
