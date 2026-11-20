@@ -8,16 +8,22 @@
 </head>
 <body>
 
-  <!-- Site Header with Brand and Navigation -->
+  <!-- Reading / Scroll Progress Bar at the top of the viewport -->
+  <div id="scroll-progress" class="scroll-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+  <!-- Site Header with Brand, Navigation, and Controls -->
   <header id="main-header" class="site-header">
     <div class="header-container">
-      <!-- Personal Brand / Monogram Link -->
-      <a href="#about" class="site-brand">Aryan Bhatt</a>
+      <!-- Modern Brand Monogram / Logo -->
+      <a href="#about" class="site-brand">
+        <span class="brand-badge">AB</span>
+        <span class="brand-name">Aryan Bhatt</span>
+      </a>
 
       <!-- Primary Navigation Links -->
       <nav id="main-nav" class="site-nav" aria-label="Main Navigation">
         <ul id="nav-links" class="nav-links">
-          <li><a href="#about" class="nav-link">01 &mdash; About</a></li>
+          <li><a href="#about" class="nav-link active">01 &mdash; About</a></li>
           <li><a href="#skills" class="nav-link">02 &mdash; Skills</a></li>
           <li><a href="#projects" class="nav-link">03 &mdash; Projects</a></li>
           <li><a href="#contact" class="nav-link">04 &mdash; Contact</a></li>
@@ -26,8 +32,9 @@
 
       <!-- Header Action Controls -->
       <div class="header-actions">
-        <!-- Dark mode toggle button -->
+        <!-- Modern Theme Toggle with Icon & Label -->
         <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Toggle dark mode">
+          <span id="theme-icon" class="theme-icon">&#9790;</span>
           <span id="theme-label" class="theme-label">Dark</span>
         </button>
 
@@ -44,91 +51,140 @@
   <!-- Main Content Landmark -->
   <main id="main-content">
 
-    <!-- 01 About Section (Asymmetric Hero Layout) -->
+    <!-- 01 About Section (Modern Hero with Status Indicator) -->
     <section id="about" class="section section-about">
       <div class="section-container">
-        <div class="section-header">
-          <span class="section-number">01</span>
-          <h2 class="section-title">About</h2>
+        
+        <!-- Live status pill -->
+        <div class="status-pill">
+          <span class="status-indicator"></span>
+          <span>Semester 3 &bull; JG University</span>
         </div>
 
         <div class="about-grid">
           <div class="about-primary">
             <h1 class="hero-name" id="hero-name">Aryan Bhatt</h1>
             <p class="hero-subtitle">B.Tech Computer Science and Engineering (CSE), Semester 3 &mdash; JG University</p>
+            <div class="hero-quick-actions">
+              <a href="#projects" class="btn btn-primary">View Projects &darr;</a>
+              <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
           </div>
 
           <div class="about-secondary">
-            <p class="about-bio">
-              I am a B.Tech CSE student at JG University. I am learning web development and enjoy turning small ideas into working pages. I am currently building my basics in HTML, CSS and JavaScript.
-            </p>
+            <div class="about-card">
+              <div class="card-tag">About Me</div>
+              <p class="about-bio">
+                I am a B.Tech CSE student at JG University. I am learning web development and enjoy turning small ideas into working pages. I am currently building my basics in HTML, CSS and JavaScript.
+              </p>
+            </div>
           </div>
         </div>
+
       </div>
     </section>
 
-    <!-- 02 Skills Section (Minimal Clean Tag Lines) -->
+    <!-- 02 Skills Section (Modern Interactive Cards) -->
     <section id="skills" class="section section-skills">
       <div class="section-container">
         <div class="section-header">
           <span class="section-number">02</span>
-          <h2 class="section-title">Skills</h2>
+          <h2 class="section-title">Skills &amp; Technologies</h2>
         </div>
 
         <div class="skills-wrapper">
           <ul class="skills-list" id="skills-list">
-            <li class="skill-item"><span class="skill-bullet">&mdash;</span> HTML</li>
-            <li class="skill-item"><span class="skill-bullet">&mdash;</span> CSS</li>
-            <li class="skill-item"><span class="skill-bullet">&mdash;</span> JavaScript</li>
-            <li class="skill-item"><span class="skill-bullet">&mdash;</span> Git and GitHub</li>
+            <li class="skill-card">
+              <div class="skill-info">
+                <span class="skill-code">&lt;/&gt;</span>
+                <span class="skill-title">HTML</span>
+              </div>
+              <span class="skill-tag">Markup</span>
+            </li>
+            <li class="skill-card">
+              <div class="skill-info">
+                <span class="skill-code">#</span>
+                <span class="skill-title">CSS</span>
+              </div>
+              <span class="skill-tag">Styling &amp; Layout</span>
+            </li>
+            <li class="skill-card">
+              <div class="skill-info">
+                <span class="skill-code">{ }</span>
+                <span class="skill-title">JavaScript</span>
+              </div>
+              <span class="skill-tag">Interactivity</span>
+            </li>
+            <li class="skill-card">
+              <div class="skill-info">
+                <span class="skill-code">&lambda;</span>
+                <span class="skill-title">Git and GitHub</span>
+              </div>
+              <span class="skill-tag">Version Control</span>
+            </li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- 03 Projects Section (Clean Editorial Row List) -->
+    <!-- 03 Projects Section (With Live Interactive Demo Feature) -->
     <section id="projects" class="section section-projects">
       <div class="section-container">
         <div class="section-header">
           <span class="section-number">03</span>
-          <h2 class="section-title">Projects</h2>
+          <h2 class="section-title">Featured Projects</h2>
         </div>
 
         <div class="projects-list" id="projects-list">
-          <!-- Project 1 -->
+          <!-- Project 1: Registration Form -->
           <article class="project-row" id="project-registration-form">
-            <div class="project-header">
-              <span class="project-num">01</span>
-              <h3 class="project-title">Registration Form</h3>
-            </div>
-            <p class="project-desc">
-              A form built with HTML and CSS using text, email, password, radio buttons, checkboxes and a drop-down, with required-field validation.
-            </p>
-            <div class="project-meta">
-              <span class="project-tech">HTML &bull; CSS</span>
-              <a href="#projects" class="project-link" aria-label="View Registration Form">View Project &rarr;</a>
+            <div class="project-content">
+              <div class="project-header">
+                <span class="project-badge">Project 01</span>
+                <h3 class="project-title">Registration Form</h3>
+              </div>
+              <p class="project-desc">
+                A form built with HTML and CSS using text, email, password, radio buttons, checkboxes and a drop-down, with required-field validation.
+              </p>
+              <div class="project-meta">
+                <div class="tech-stack">
+                  <span class="tech-pill">HTML</span>
+                  <span class="tech-pill">CSS</span>
+                </div>
+                <button type="button" class="project-demo-btn" id="btn-view-project-1">
+                  View Specifications &rarr;
+                </button>
+              </div>
             </div>
           </article>
 
-          <!-- Project 2 -->
+          <!-- Project 2: Colour Changer and Live Text -->
           <article class="project-row" id="project-colour-changer">
-            <div class="project-header">
-              <span class="project-num">02</span>
-              <h3 class="project-title">Colour Changer and Live Text</h3>
-            </div>
-            <p class="project-desc">
-              A small JavaScript app where a button changes the heading colour and a text box shows what you type, using addEventListener and the input event.
-            </p>
-            <div class="project-meta">
-              <span class="project-tech">HTML &bull; CSS &bull; JavaScript</span>
-              <a href="#projects" class="project-link" aria-label="View Colour Changer and Live Text">View Project &rarr;</a>
+            <div class="project-content">
+              <div class="project-header">
+                <span class="project-badge">Project 02 &bull; Interactive</span>
+                <h3 class="project-title">Colour Changer and Live Text</h3>
+              </div>
+              <p class="project-desc">
+                A small JavaScript app where a button changes the heading colour and a text box shows what you type, using addEventListener and the input event.
+              </p>
+              <div class="project-meta">
+                <div class="tech-stack">
+                  <span class="tech-pill">HTML</span>
+                  <span class="tech-pill">CSS</span>
+                  <span class="tech-pill">JavaScript</span>
+                </div>
+                <button type="button" class="project-demo-btn active-demo-btn" id="btn-open-demo">
+                  Try Live Demo &rarr;
+                </button>
+              </div>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- 04 Contact Section with Form -->
+    <!-- 04 Contact Section with Form, Character Counter, and Copy Email Feature -->
     <section id="contact" class="section section-contact">
       <div class="section-container">
         <div class="section-header">
@@ -137,19 +193,26 @@
         </div>
 
         <div class="contact-grid">
-          <!-- Contact Details and Note -->
+          <!-- Left side: Direct email with one-click copy -->
           <div class="contact-info">
             <h3 class="contact-heading">Get in touch</h3>
             <p class="contact-text">
               Have a question or want to connect? You can reach me by email or drop a message through this form.
             </p>
-            <div class="contact-email-box">
-              <span class="contact-email-label">Email:</span>
-              <a href="mailto:Aryanbhatt11@gmail.com" class="contact-email-link" id="contact-email-link">Aryanbhatt11@gmail.com</a>
+            
+            <div class="contact-email-card">
+              <span class="contact-email-label">Direct Email</span>
+              <div class="email-copy-wrapper">
+                <a href="mailto:Aryanbhatt11@gmail.com" class="contact-email-link" id="contact-email-link">Aryanbhatt11@gmail.com</a>
+                <button type="button" id="copy-email-btn" class="copy-btn" title="Copy email address" aria-label="Copy email address">
+                  <span id="copy-btn-text">Copy</span>
+                </button>
+              </div>
+              <span id="copy-feedback" class="copy-feedback" aria-live="polite"></span>
             </div>
           </div>
 
-          <!-- Contact Form with Required Fields -->
+          <!-- Right side: Modern Contact Form with Real-time Character Counter -->
           <div class="contact-form-container">
             <form id="contact-form" class="contact-form" novalidate>
               <!-- Name Input Field -->
@@ -166,15 +229,21 @@
                 <span class="error-msg" id="email-error"></span>
               </div>
 
-              <!-- Message Textarea Field -->
+              <!-- Message Textarea with Dynamic Character Counter -->
               <div class="form-group" id="group-message">
-                <label for="message" class="form-label">Message <span class="required-mark">*</span></label>
+                <div class="label-with-counter">
+                  <label for="message" class="form-label">Message <span class="required-mark">*</span></label>
+                  <span id="char-counter" class="char-counter">0 / 10 chars min</span>
+                </div>
                 <textarea id="message" name="message" class="form-textarea" rows="4" placeholder="Write your message here (minimum 10 characters)..." required></textarea>
                 <span class="error-msg" id="message-error"></span>
               </div>
 
               <!-- Submit Button and Feedback Area -->
-              <button type="submit" id="submit-btn" class="btn btn-primary">Send Message</button>
+              <button type="submit" id="submit-btn" class="btn btn-primary submit-action-btn">
+                <span>Send Message</span>
+                <span class="btn-arrow">&rarr;</span>
+              </button>
               <div id="form-status" class="form-status" role="status"></div>
             </form>
           </div>
@@ -183,6 +252,36 @@
     </section>
 
   </main>
+
+  <!-- Interactive Modal Feature for Live Project Demos -->
+  <div id="project-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modal-title" class="modal-title">Live Demo: Colour Changer &amp; Live Text</h3>
+        <button type="button" id="modal-close-btn" class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-subtext">This interactive demo runs the exact JavaScript events implemented in Project 2:</p>
+        
+        <!-- Live Demo Container -->
+        <div class="demo-box" id="demo-box">
+          <h4 id="demo-heading" class="demo-heading">Interactive Heading Preview</h4>
+          <p class="demo-instruction">Type in the box below to see real-time updates:</p>
+          <input type="text" id="demo-input" class="form-input demo-input" placeholder="Type something here...">
+          <div class="demo-output">
+            <span class="output-label">Live Echo:</span>
+            <span id="demo-echo" class="output-text">(your typing will appear here)</span>
+          </div>
+          <button type="button" id="demo-color-btn" class="btn btn-secondary demo-color-btn">Change Heading Colour</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Back-to-Top Button Feature -->
+  <button id="back-to-top" class="back-to-top-btn" type="button" aria-label="Back to top" title="Back to top">
+    &uarr;
+  </button>
 
   <!-- Semantic Site Footer -->
   <footer id="main-footer" class="site-footer">
