@@ -109,3 +109,102 @@ if ('IntersectionObserver' in window && !prefersReducedMotion) {
     section.classList.add('is-visible');
   });
 }
+
+// --------------------------------------------------------------------------
+// 4. Contact Form Validation
+// --------------------------------------------------------------------------
+// Grab form inputs, error message containers, and status display
+const contactForm = document.getElementById('contact-form');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const messageInput = document.getElementById('message');
+
+const nameError = document.getElementById('name-error');
+const emailError = document.getElementById('email-error');
+const messageError = document.getElementById('message-error');
+const formStatus = document.getElementById('form-status');
+
+// Helper function to test email format using a standard regular expression
+function isValidEmail(email) {
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailPattern.test(email);
+}
+
+// Real-time feedback: clear error messages as the user types
+if (nameInput && nameError) {
+  nameInput.addEventListener('input', function () {
+    if (nameInput.value.trim() !== '') {
+      nameError.textContent = '';
+    }
+  });
+}
+
+if (emailInput && emailError) {
+  emailInput.addEventListener('input', function () {
+    if (isValidEmail(emailInput.value.trim())) {
+      emailError.textContent = '';
+    }
+  });
+}
+
+if (messageInput && messageError) {
+  messageInput.addEventListener('input', function () {
+    if (messageInput.value.trim().length >= 10) {
+      messageError.textContent = '';
+    }
+  });
+}
+
+// Listen for form submit event using addEventListener
+if (contactForm) {
+  contactForm.addEventListener('submit', function (event) {
+    // Prevent the default form submission page reload
+    event.preventDefault();
+
+    let isFormValid = true;
+
+    // Reset previous error messages and status
+    nameError.textContent = '';
+    emailError.textContent = '';
+    messageError.textContent = '';
+    formStatus.textContent = '';
+    formStatus.className = 'form-status';
+
+    // 1. Name validation (required, not empty)
+    const nameVal = nameInput.value.trim();
+    if (nameVal === '') {
+      nameError.textContent = 'Please enter your name.';
+      isFormValid = false;
+    }
+
+    // 2. Email validation (required and must match email format)
+    const emailVal = emailInput.value.trim();
+    if (emailVal === '') {
+      emailError.textContent = 'Please enter your email address.';
+      isFormValid = false;
+    } else if (!isValidEmail(emailVal)) {
+      emailError.textContent = 'Please enter a valid email address (e.g., name@example.com).';
+      isFormValid = false;
+    }
+
+    // 3. Message validation (required and at least 10 characters)
+    const messageVal = messageInput.value.trim();
+    if (messageVal === '') {
+      messageError.textContent = 'Please enter your message.';
+      isFormValid = false;
+    } else if (messageVal.length < 10) {
+      messageError.textContent = 'Message must be at least 10 characters long.';
+      isFormValid = false;
+    }
+
+    // Final check: if everything is valid, display success message and reset inputs
+    if (isFormValid) {
+      formStatus.textContent = 'Thank you! Your message has been sent successfully.';
+      formStatus.classList.add('success');
+      contactForm.reset();
+    } else {
+      formStatus.textContent = 'Please fix the errors above before submitting.';
+      formStatus.classList.add('error');
+    }
+  });
+}
