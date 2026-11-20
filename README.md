@@ -13,7 +13,7 @@ This portfolio presents my background, technical skills, academic projects, and 
 - JavaScript (Vanilla ES6, Event Listeners, IntersectionObserver, Clipboard API)
 - Git & GitHub (Version control)
 
-## Screenshot
+# Screenshot
 
 ![Portfolio Screenshot](screenshot.png)
 
