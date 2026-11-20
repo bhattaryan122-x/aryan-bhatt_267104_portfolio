@@ -128,7 +128,69 @@
       </div>
     </section>
 
+    <!-- 04 Contact Section with Form -->
+    <section id="contact" class="section section-contact">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-number">04</span>
+          <h2 class="section-title">Contact</h2>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Contact Details and Note -->
+          <div class="contact-info">
+            <h3 class="contact-heading">Get in touch</h3>
+            <p class="contact-text">
+              Have a question or want to connect? You can reach me by email or drop a message through this form.
+            </p>
+            <div class="contact-email-box">
+              <span class="contact-email-label">Email:</span>
+              <a href="mailto:Aryanbhatt11@gmail.com" class="contact-email-link" id="contact-email-link">Aryanbhatt11@gmail.com</a>
+            </div>
+          </div>
+
+          <!-- Contact Form with Required Fields -->
+          <div class="contact-form-container">
+            <form id="contact-form" class="contact-form" novalidate>
+              <!-- Name Input Field -->
+              <div class="form-group" id="group-name">
+                <label for="name" class="form-label">Name <span class="required-mark">*</span></label>
+                <input type="text" id="name" name="name" class="form-input" placeholder="Your full name" required>
+                <span class="error-msg" id="name-error"></span>
+              </div>
+
+              <!-- Email Input Field -->
+              <div class="form-group" id="group-email">
+                <label for="email" class="form-label">Email <span class="required-mark">*</span></label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com" required>
+                <span class="error-msg" id="email-error"></span>
+              </div>
+
+              <!-- Message Textarea Field -->
+              <div class="form-group" id="group-message">
+                <label for="message" class="form-label">Message <span class="required-mark">*</span></label>
+                <textarea id="message" name="message" class="form-textarea" rows="4" placeholder="Write your message here (minimum 10 characters)..." required></textarea>
+                <span class="error-msg" id="message-error"></span>
+              </div>
+
+              <!-- Submit Button and Feedback Area -->
+              <button type="submit" id="submit-btn" class="btn btn-primary">Send Message</button>
+              <div id="form-status" class="form-status" role="status"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
+
+  <!-- Semantic Site Footer -->
+  <footer id="main-footer" class="site-footer">
+    <div class="footer-container">
+      <p class="footer-copy">&copy; Aryan Bhatt &mdash; B.Tech CSE, Semester 3, JG University</p>
+      <a href="mailto:Aryanbhatt11@gmail.com" class="footer-mail">Aryanbhatt11@gmail.com</a>
+    </div>
+  </footer>
 
   <!-- JavaScript file -->
   <script src="script.js"></script>
