@@ -64,3 +64,48 @@ if (menuToggleBtn && navLinksList) {
     });
   });
 }
+
+// --------------------------------------------------------------------------
+// 3. Scroll Reveal Animations (IntersectionObserver) & Hero Load Animation
+// --------------------------------------------------------------------------
+// Trigger entrance animation for hero section on page load
+window.addEventListener('DOMContentLoaded', function () {
+  const heroNameHeading = document.getElementById('hero-name');
+  if (heroNameHeading) {
+    heroNameHeading.classList.add('hero-animate');
+  }
+});
+
+// Check if user has requested reduced motion
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Select all major sections to reveal when scrolled into view
+const allSections = document.querySelectorAll('.section');
+
+// Use IntersectionObserver to fade-in sections as the user scrolls
+if ('IntersectionObserver' in window && !prefersReducedMotion) {
+  const observerConfig = {
+    root: null,
+    threshold: 0.12
+  };
+
+  const scrollObserver = new IntersectionObserver(function (entries, observer) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        // Unobserve once shown so it stays visible
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerConfig);
+
+  allSections.forEach(function (section) {
+    section.classList.add('fade-in-section');
+    scrollObserver.observe(section);
+  });
+} else {
+  // Fallback: make all sections visible if observer is unavailable or motion reduced
+  allSections.forEach(function (section) {
+    section.classList.add('is-visible');
+  });
+}

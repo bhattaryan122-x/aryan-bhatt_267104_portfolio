@@ -138,11 +138,28 @@ ul {
   letter-spacing: 0.02em;
   color: var(--text-muted);
   position: relative;
-  padding-bottom: 0.25rem;
+  padding-bottom: 0.35rem;
+  transition: color var(--transition-speed) ease;
 }
 
 .nav-link:hover {
   color: var(--accent-color);
+}
+
+/* Subtle underline that grows from 0% to 100% on hover */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 1px;
+  background-color: var(--accent-color);
+  transition: width var(--transition-speed) ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }
 
 /* Actions in header: Theme toggle and mobile hamburger */
@@ -240,6 +257,22 @@ ul {
   margin-bottom: 1rem;
 }
 
+/* Subtle fade-in on hero name on initial load */
+@keyframes heroEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-animate {
+  animation: heroEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 .hero-subtitle {
   font-size: 1.05rem;
   color: var(--text-muted);
@@ -275,13 +308,17 @@ ul {
   transition: border-color var(--transition-speed) ease, color var(--transition-speed) ease;
 }
 
+.skill-item:hover {
+  border-color: var(--accent-color);
+}
+
 .skill-bullet {
   color: var(--accent-color);
   font-weight: bold;
 }
 
 /* --------------------------------------------------------------------------
-   7. Section 03: Projects (Clean Row List)
+   7. Section 03: Projects (Clean Row List with Hover Lift)
    -------------------------------------------------------------------------- */
 #projects-list {
   display: flex;
@@ -293,7 +330,21 @@ ul {
   background-color: var(--card-bg);
   border: 1px solid var(--border-color);
   padding: 2.25rem 2.5rem;
-  transition: border-color var(--transition-speed) ease, background-color var(--transition-speed) ease;
+  transition: transform var(--transition-speed) ease,
+              border-color var(--transition-speed) ease,
+              background-color var(--transition-speed) ease,
+              box-shadow var(--transition-speed) ease;
+}
+
+/* Small hover lift on project row, highlighting the entire card */
+.project-row:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-color);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+body.dark-mode .project-row:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
 }
 
 .project-header {
@@ -341,6 +392,14 @@ ul {
   font-size: 0.95rem;
   color: var(--accent-color);
   font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: transform var(--transition-speed) ease;
+}
+
+.project-row:hover .project-link {
+  transform: translateX(4px);
 }
 
 /* --------------------------------------------------------------------------
@@ -440,7 +499,7 @@ ul {
   min-height: 1.1rem;
 }
 
-/* Submit button */
+/* Submit button with small hover lift */
 #submit-btn {
   align-self: flex-start;
   padding: 0.85rem 2rem;
@@ -451,11 +510,12 @@ ul {
   border: none;
   border-radius: 2px;
   cursor: pointer;
-  transition: background-color var(--transition-speed) ease;
+  transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
 }
 
 #submit-btn:hover {
   background-color: var(--accent-hover);
+  transform: translateY(-2px);
 }
 
 .form-status {
@@ -472,7 +532,23 @@ ul {
 }
 
 /* --------------------------------------------------------------------------
-   9. Footer (Element and ID Selectors)
+   9. Scroll Reveal Animations (Subtle fade and slide up)
+   -------------------------------------------------------------------------- */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   10. Footer (Element and ID Selectors)
    -------------------------------------------------------------------------- */
 #main-footer {
   border-top: 1px solid var(--border-color);
@@ -499,7 +575,7 @@ ul {
 }
 
 /* --------------------------------------------------------------------------
-   10. Responsive Design (@media query for mobile & tablets)
+   11. Responsive Design (@media query for mobile & tablets)
    -------------------------------------------------------------------------- */
 @media screen and (max-width: 768px) {
   /* Navigation menu on mobile */
@@ -518,7 +594,7 @@ ul {
     align-items: flex-start;
     padding: 1.5rem 2rem;
     gap: 1.25rem;
-    display: none; /* Toggled with JavaScript in next step */
+    display: none;
   }
 
   .nav-links.nav-open {
@@ -568,5 +644,28 @@ ul {
     flex-direction: column;
     gap: 0.75rem;
     align-items: flex-start;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   12. Accessibility: Respect prefers-reduced-motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  html {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .fade-in-section {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .project-row:hover,
+  #submit-btn:hover {
+    transform: none !important;
   }
 }
