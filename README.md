@@ -31,4 +31,4 @@ This portfolio presents my background, technical skills, academic projects, and 
 
 ## Live Link
 
-Live link: (add after GitHub Pages is on)
+Live link: https://bhattaryan122-x.github.io/aryan-bhatt_267104_portfolio/
